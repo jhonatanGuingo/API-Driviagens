@@ -1,6 +1,5 @@
 import httpStatus from "http-status";
 import flightService from "../services/flightServices.js";
-import { validateSchema } from "../middlewares/validateSchema.js";
 import { incompleteDataError } from "../errors/incompleteData.js";
 import { convertDate } from "../utils/convertData.js";
 import { flightSchemaDate } from "../schemas/flightSchema.js";
