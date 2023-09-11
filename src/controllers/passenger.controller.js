@@ -15,7 +15,7 @@ async function getPassenger(req, res){
 
     const passengers = await passengerService.getPassenger(name);
 
-    res.send(passengers);
+    res.send(passengers.rows);
 
 }
 

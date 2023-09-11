@@ -10,8 +10,24 @@ async function postFlight(req, res){
 
 }
 
+async function getFlightByCitie(req, res){
+    const {origin, destination} = req.query;
+    const smallerDate = req.query['smaller-date'];
+    const biggerDate = req.query['bigger-date'];
+    
+    if (smallerDate && biggerDate) {
+      
+        if(smallerDate > biggerDate) return res.sendStatus(httpStatus.BAD_REQUEST)
+    }
+
+    const result = await flightService.getFlightByCitie(origin, destination, smallerDate, biggerDate);
+
+    return res.send(result);
+}
+
 const flightController = {
-    postFlight
+    postFlight,
+    getFlightByCitie
 }
 
 export default flightController;
