@@ -4,7 +4,7 @@ import citieRepository from "../repositories/citieRepository.js";
 async function postCitie(name){
     const result = await citieRepository.getCitie(name)
 
-    if (result) throw conflictError("Frase");
+    if (result) throw conflictError("Cidade");
 
     return citieRepository.postCitie(name);
 }

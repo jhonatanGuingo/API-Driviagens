@@ -12,7 +12,7 @@ async function getFlight(origin, destination){
     const existOrigin = await db.query(`SELECT cities.id FROM cities WHERE id = $1`, [parseInt(origin)]);
     const existDestination = await db.query(`SELECT cities.id FROM cities WHERE id = $1`, [parseInt(destination)]);
 
-    if(existOrigin && existDestination) return true;
+    if(existOrigin.rowCount && existDestination.rowCount) return true;
 
     return false;
 

@@ -4,7 +4,7 @@ async function getId(passengerId, flightId){
     const existPassenger = await db.query(`SELECT id FROM passengers WHERE id = $1`, [passengerId])
     const existFlight = await db.query(`SELECT id FROM flights WHERE id = $1`, [flightId]);
 
-    if(existFlight && existPassenger) return true;
+    if(existFlight.rowCount && existPassenger.rowCount) return true;
 
     return false;
 }

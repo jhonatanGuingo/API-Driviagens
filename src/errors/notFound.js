@@ -1,6 +1,7 @@
-export function notFoundError(resource = "Item") {
+export function notFoundError() {
+    console.log('oiii')
     return {
         type: "notFound",
-        message: `${resource} não encontrado!`
+        message: `ID não encontrado!`
     }
 }

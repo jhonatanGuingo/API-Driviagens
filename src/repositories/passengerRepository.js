@@ -11,10 +11,12 @@ async function getPassenger(name){
 	COUNT(travels.*) AS travels
     FROM passengers
     LEFT JOIN travels ON passengers.id = travels."passengerId"
-    WHERE passengers."firstName" ILIKE '%' || $1 || '%'
+    WHERE passengers."firstName" || ' ' || passengers."lastName" ILIKE $1
     GROUP BY passenger
 	ORDER BY travels DESC
-	LIMIT 10`, [name] )
+	LIMIT 10`, [`%${name}%`] )
+
+    console.log(passenger.rows)
 
     return passenger.rows;
 }

@@ -4,7 +4,7 @@ import travelRepository from "../repositories/travelRepository.js";
 async function postTravel(passengerId, flightId){
     const result = await travelRepository.getId(passengerId, flightId);
 
-    if(result === false) throw notFoundError("Frase");
+    if(result === false) throw notFoundError();
 
     return travelRepository.postTravel(passengerId, flightId);
 
