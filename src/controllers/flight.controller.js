@@ -3,6 +3,7 @@ import flightService from "../services/flightServices.js";
 import { validateSchema } from "../middlewares/validateSchema.js";
 import { incompleteDataError } from "../errors/incompleteData.js";
 import { convertDate } from "../utils/convertData.js";
+import { flightSchemaDate } from "../schemas/flightSchema.js";
 
 async function postFlight(req, res){
     const {origin, date, destination} = req.body;
@@ -20,10 +21,25 @@ async function getFlightByCitie(req, res){
     
     console.log(smallerDate, 'small')
     console.log(biggerDate, 'bigger')
+
     if (smallerDate && biggerDate) {
         
         const small = convertDate(smallerDate);
         const bigger = convertDate(biggerDate);
+
+        const body = {
+            smallerDate: smallerDate,
+            biggerDate: biggerDate
+        }
+
+        const validation = flightSchemaDate.validate(body, {abortEarly: false});
+        if (validation.error){
+            const errors = validation.error.details.map(detail => detail.message)
+            throw incompleteDataError();
+        }
+
+       
+
         if(small> bigger) return res.sendStatus(httpStatus.BAD_REQUEST)
     }
 

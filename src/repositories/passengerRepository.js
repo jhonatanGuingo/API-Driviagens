@@ -18,7 +18,7 @@ async function getPassenger(name){
 
     console.log(passenger.rows)
 
-    return passenger.rows;
+    return passenger;
 }
 
 const passengerRepository = {
